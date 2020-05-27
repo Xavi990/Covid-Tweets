@@ -80,7 +80,7 @@ totales_locations["Porcentaje", "Ruidosas"]  = (totales_locations["Valor","Ruido
 pie(totales_locations["Porcentaje",c(2:4)], col=rainbow(25),font=8,cex=1.5,radius=1,border=F,main="Info Locaciones")
 
 
-#Levantado del archivo de ciudades por pais y elimino las dos últimas columnas que no nos interesan
+#Levantado del archivo de ciudades por pais y borrado de las dos últimas columnas que no nos interesan
 #rm(datos_ciudades)
 datos_ciudades  = read.csv(header=TRUE, file="C:\\Users\\elias\\Documents\\Maestria\\DM20\\TP01\\worldcities.csv")
 datos_ciudades <- datos_ciudades[,-c(3:4)]
@@ -146,7 +146,7 @@ getPais(prulis)
 a=lapply(prulis, getPais)
 
 #Corrida OK
-df_locations$pais <- lapply(df_locations$location, stdPais)
+df_locations$pais <- lapply(df_locations$location, getPais)
 
 
 #segunda funcion que obtiene los paises de buscar en toda la tabla ==> Lenta
@@ -168,7 +168,7 @@ getPais3 <- function(lugar) {
   return (pais)
 }
 
-prupais3=lapply(df_locations$location, stdPais3)
+prupais3=lapply(df_locations$location, getPais3)
 
 #encontré un registro con ruido
 ruido1=as.vector(grep("Justamente",df_locations$location))
